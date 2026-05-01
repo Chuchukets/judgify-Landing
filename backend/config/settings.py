@@ -90,5 +90,3 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ],
 }
-
-ALLOWED_HOSTS = ['postgresql://judgify_db_user:LkWjDNW8JnoYftvwWq1tuVR8MDd3NL61@dpg-d7q03ef7f7vs73cfc1i0-a/judgify_db', 'localhost', '127.0.0.1']
