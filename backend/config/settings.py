@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -54,14 +55,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 ASGI_APPLICATION = 'config.asgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'judgify'),
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'postgres'),
-        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
-        'PORT': os.getenv('DB_PORT', '5432'),
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = []
@@ -85,3 +82,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ],
 }
+
+ALLOWED_HOSTS = ['postgresql://judgify_db_user:LkWjDNW8JnoYftvwWq1tuVR8MDd3NL61@dpg-d7q03ef7f7vs73cfc1i0-a/judgify_db', 'localhost', '127.0.0.1']
