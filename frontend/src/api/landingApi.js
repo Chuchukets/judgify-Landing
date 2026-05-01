@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:8000/api';
+const API_BASE = 'https://judgify-backend-qxoy.onrender.com/api';
 
 function buildQuery(params) {
   const searchParams = new URLSearchParams();
