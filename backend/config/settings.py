@@ -9,7 +9,12 @@ load_dotenv(BASE_DIR / '.env.docker')
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key')
 DEBUG = os.getenv('DEBUG', '1') == '1'
-ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',') if h.strip()]
+ALLOWED_HOSTS = [
+    'judgify-backend-qxoy.onrender.com', # Додай цей точний домен
+    'localhost',
+    '127.0.0.1',
+    '.onrender.com', # Можна додати так, щоб дозволити всі субдомени render
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -75,7 +80,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 cors_origins = [x.strip() for x in os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:5173').split(',') if x.strip()]
-CORS_ALLOWED_ORIGINS = cors_origins
+CORS_ALLOWED_ORIGINS = ["https://judgify-frontend.onrender.com"]
 CORS_ALLOW_CREDENTIALS = True
 
 REST_FRAMEWORK = {
